@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "694977795642",
+    "project_id": "gate-fb79a",
+    "storage_bucket": "gate-fb79a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694977795642:android:d35f675f985559d7680703",
+        "android_client_info": {
+          "package_name": "com.example.gatesecure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694977795642-lnj9djgid902nr7anset9fhtmndkb1m2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWLlErEFTKvqL3Ug4j0ERPdmnPvj7XTV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694977795642-lnj9djgid902nr7anset9fhtmndkb1m2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
