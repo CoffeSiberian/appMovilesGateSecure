@@ -36,7 +36,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ViewUsers"
+            android:name=".ViewUsersActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

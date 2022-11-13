@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrudActivity">
+    tools:context=".ViewUsersActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -28,8 +28,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:text="Productos" />
-
+                android:text="Usuarios" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProductos"

@@ -19,7 +19,7 @@ class ProfileUser : AppCompatActivity() {
         setContentView(binding.root)
 
         actionBar = supportActionBar!!
-        actionBar.title = "Perfil"
+        actionBar.title = "Perfil de usuario"
 
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
