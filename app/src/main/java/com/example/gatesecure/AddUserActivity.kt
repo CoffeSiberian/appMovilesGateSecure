@@ -44,7 +44,6 @@ class AddUserActivity : AppCompatActivity() {
             }
             if (azlevel.isEmpty()){
                 binding.cazlevel.error = "Ingrese el nivel de acceso"
-
             }else{
                 val usuario = Usuario(id = id, name = nombre, rfid = rfid, azlevel = azlevel)
                 if (id != null) {
