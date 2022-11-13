@@ -29,8 +29,12 @@ class ProfileUser : AppCompatActivity() {
             checkUser()
         }
 
+        binding.btnVIEW.setOnClickListener {
+            startActivity(Intent(this, ViewUsersActivity::class.java))
+        }
+
         binding.btnCRUD.setOnClickListener {
-            startActivity(Intent(this, CrudActivity::class.java))
+            startActivity(Intent(this, AddUserActivity::class.java))
         }
     }
 
