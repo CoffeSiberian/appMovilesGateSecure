@@ -32,5 +32,4 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario>) : RecyclerView.
             val rfid: TextView = itemView.findViewById(R.id.crfid)
             val azlevel: TextView = itemView.findViewById(R.id.cazlevel)
         }
-
 }
