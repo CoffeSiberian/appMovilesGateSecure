@@ -66,7 +66,7 @@ class SignUpActivity : AppCompatActivity() {
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
                 Toast.makeText(this, "Registrado con el email: $email", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, crudActivity::class.java))
+                startActivity(Intent(this, ProfileUser::class.java))
                 finish()
             }
             .addOnFailureListener { e ->

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".crudActivity">
+    tools:context=".CrudActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -37,23 +37,5 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        app:hideOnScroll="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        style="@style/Widget.Material3.BottomAppBar"
-        app:navigationIcon="@drawable/ic_add_24dp"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_add_24dp"
-        app:layout_anchor="@id/bottomAppBar"
-        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

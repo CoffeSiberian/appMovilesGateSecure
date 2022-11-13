@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    tools:context=".ProfileUser">
+
+    <TextView
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tú estas conectado como"/>
+
+    <TextView
+        style="@style/TextAppearance.Material3.HeadlineLarge"
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Nombre de usuario"/>
+
+    <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Cerrar sesión"/>
+    />
+
+    <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:id="@+id/btnCRUD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Ir al CRUD"/>
+    />
+
+</LinearLayout>
