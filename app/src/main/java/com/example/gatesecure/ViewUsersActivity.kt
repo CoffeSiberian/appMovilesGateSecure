@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,11 +21,9 @@ class ViewUsersActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCrudBinding
     private lateinit var actionBar: ActionBar
     private lateinit var usuariosRecyclerView: RecyclerView
-
-    private lateinit var adapterProductos: AdapterUsuarios
-    private var listUsuarios = ArrayList<Usuario?>()
-
+    private lateinit var adapterUsuarios: AdapterUsuarios
     private lateinit var database: DatabaseReference
+    private var listUsuarios = ArrayList<Usuario?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,10 +56,14 @@ class ViewUsersActivity : AppCompatActivity() {
             for (r in arr){
                 listUsuarios.add(r.getValue<Usuario>())
             }
-            Log.i("firebase", "$listUsuarios")
 
-            rview.adapter = AdapterUsuarios(listUsuarios)
-
+            var adapterUsuarios = AdapterUsuarios(listUsuarios)
+            rview.adapter = adapterUsuarios
+            adapterUsuarios.setOnItemClickListener(object : AdapterUsuarios.onItemClickListener{
+                override fun onItemClick(position: Int) {
+                    Log.e("firebase", "$position")
+                }
+            })
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }
