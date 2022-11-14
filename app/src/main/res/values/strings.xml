@@ -3,4 +3,8 @@
     <string name="registro">Registrarse</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">test</string>
+    <string name="modalDelTitle" >¿Desea borrar al usuario?</string>
+    <string name="modalDelAccept">Borrar</string>
+    <string name="modalDelCancel">Cancelar</string>
 </resources>
