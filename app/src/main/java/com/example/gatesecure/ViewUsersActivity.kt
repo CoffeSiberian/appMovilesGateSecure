@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -118,6 +117,15 @@ class ViewUsersActivity : AppCompatActivity() {
                 val newLevel: EditText = view.findViewById(R.id.edlevel)
                 val newRfid: EditText = view.findViewById(R.id.edrfid)
 
+                if (newName.text.toString().trim().isEmpty()){
+                    newName.error = "Ingrese el nombre del usuario"
+                }
+                else if (newLevel.text.toString().trim().isEmpty()){
+                    newLevel.error = "Ingrese un nivel de acceso"
+                }
+                else if (newRfid.text.toString().trim().isEmpty()){
+                    newRfid.error = "Ingrese el RFID de la tarjeta"
+                }else {
                     val userUpdate = Usuario(
                         id,
                         newName.text.toString().trim(),
@@ -129,9 +137,9 @@ class ViewUsersActivity : AppCompatActivity() {
                     val childUpdates = hashMapOf<String, Any>(
                         "/$id" to userUpdateValue,
                     )
-                Log.w("dev", "$userUpdateValue")
                     database.updateChildren(childUpdates)
-                dialog.cancel()
+                    dialog.cancel()
+                }
             }
             .setNegativeButton(resources.getString(R.string.modalDelCancel)) { dialog, which ->
                 dialog.cancel()
