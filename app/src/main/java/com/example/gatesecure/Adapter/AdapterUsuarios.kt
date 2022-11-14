@@ -47,6 +47,7 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView
             init {
                 val id: TextView = itemView.findViewById(R.id.cid)
                 val name: TextView = itemView.findViewById(R.id.cname)
+
                 itemView.findViewById<View>(R.id.cdelete).setOnClickListener(){
                     listener.onItemClick(adapterPosition, id.text.toString(), "cdelete", name.text.toString())
                 }

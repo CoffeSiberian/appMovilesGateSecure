@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -89,11 +92,14 @@ class ViewUsersActivity : AppCompatActivity() {
 
     private fun viewLoad(rview: RecyclerView){
         val adapterUsuarios = AdapterUsuarios(listUsuarios)
+        val context = this
         rview.adapter = adapterUsuarios
         adapterUsuarios.setOnItemClickListener(object : AdapterUsuarios.onItemClickListener{
             override fun onItemClick(position: Int, id: String, nameClick: String, name: String) {
                 if (nameClick == "cedit"){
+                    val refEdit = database.child("Usuarios")
                     Log.w("dev", nameClick)
+                    editDialog(context, refEdit, name, id)
                 }
                 if (nameClick == "cdelete"){
                     val refDel = database.child("Usuarios").child(id)
@@ -103,16 +109,34 @@ class ViewUsersActivity : AppCompatActivity() {
         })
     }
 
-    private fun editDialog(context: Context){
+    private fun editDialog(context: Context, database: DatabaseReference, name: String, id: String){
+        val view: View = View.inflate(this, R.layout.activity_edit_usuario, null)
         MaterialAlertDialogBuilder(context)
-            .setTitle(resources.getString(R.string.title))
-            .setMessage(resources.getString(R.string.title))
-            .setPositiveButton(resources.getString(R.string.title)) { dialog, which ->
-                // Respond to neutral button press
+            .setTitle("Estas editando al usuario $name")
+            .setPositiveButton(resources.getString(R.string.modalEditAccept)) { dialog, which ->
+                val newName: EditText = view.findViewById(R.id.edname)
+                val newLevel: EditText = view.findViewById(R.id.edlevel)
+                val newRfid: EditText = view.findViewById(R.id.edrfid)
+
+                    val userUpdate = Usuario(
+                        id,
+                        newName.text.toString().trim(),
+                        newRfid.text.toString().trim(),
+                        newLevel.text.toString().trim(),
+                    )
+                    val userUpdateValue = userUpdate.toMap()
+
+                    val childUpdates = hashMapOf<String, Any>(
+                        "/$id" to userUpdateValue,
+                    )
+                Log.w("dev", "$userUpdateValue")
+                    database.updateChildren(childUpdates)
+                dialog.cancel()
             }
-            .setNegativeButton(resources.getString(R.string.title)) { dialog, which ->
-                // Respond to negative button press
+            .setNegativeButton(resources.getString(R.string.modalDelCancel)) { dialog, which ->
+                dialog.cancel()
             }
+            .setView(view)
             .show()
     }
 

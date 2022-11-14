@@ -6,8 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:gravity="center"
-    tools:context=".EditUsuarioActivity">
+    android:gravity="center">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNombre"
@@ -16,7 +15,7 @@
         android:layout_marginVertical="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cName"
+            android:id="@+id/edname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre Usuario"
@@ -28,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cazlevel"
+            android:id="@+id/edlevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -41,20 +40,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/crfid"
+            android:id="@+id/edrfid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="ID Tarjeta"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnAdd"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Agregar"
-        android:textAppearance="?attr/textAppearanceButton" />
 </LinearLayout>
