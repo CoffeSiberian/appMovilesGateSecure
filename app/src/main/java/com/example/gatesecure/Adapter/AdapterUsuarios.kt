@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gatesecure.Model.Usuario
 import com.example.gatesecure.R
 
-class AdapterUsuarios (private val usuarios: ArrayList<Usuario>) : RecyclerView.Adapter<AdapterUsuarios.ViewHolder>() {
+class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView.Adapter<AdapterUsuarios.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.users_card, parent, false)
             return ViewHolder(view)
@@ -16,10 +16,10 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario>) : RecyclerView.
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val usuario = usuarios[position]
-            holder.id.text = usuario.id
-            holder.name.text = usuario.name
-            holder.rfid.text = usuario.rfid
-            holder.azlevel.text = usuario.azlevel.toString()
+            holder.id.text = usuario?.id
+            holder.name.text = usuario?.name
+            holder.rfid.text = usuario?.rfid
+            holder.azlevel.text = usuario?.azlevel.toString()
         }
 
         override fun getItemCount(): Int {

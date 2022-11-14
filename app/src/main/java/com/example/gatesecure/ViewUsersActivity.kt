@@ -18,10 +18,10 @@ class ViewUsersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCrudBinding
     private lateinit var actionBar: ActionBar
-    private lateinit var productosRecyclerView: RecyclerView
+    private lateinit var usuariosRecyclerView: RecyclerView
 
     private lateinit var adapterProductos: AdapterUsuarios
-    private lateinit var listUsuarios: ArrayList<Usuario>
+    private var listUsuarios = ArrayList<Usuario?>()
 
     private lateinit var database: DatabaseReference
 
@@ -29,28 +29,33 @@ class ViewUsersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCrudBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        usuariosRecyclerView = RecyclerView(this)
+        usuariosRecyclerView.setHasFixedSize(true)
+
+        getUsers(usuariosRecyclerView)
 
         actionBar = supportActionBar!!
         actionBar.title = "Agregar Usuario"
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
+    }
 
+    private fun getUsers(rview: RecyclerView) {
 
         database = Firebase.database.reference
-
         var getData = database.child("Usuarios").get()
 
         getData.addOnSuccessListener {
             var arr = it.children
-
             for (r in arr){
-                Log.i("firebase", "${r.getValue<Usuario>()}")
-
+                listUsuarios.add(r.getValue<Usuario>())
             }
+            Log.i("firebase", "$listUsuarios")
+
+            rview.adapter = AdapterUsuarios(listUsuarios)
 
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }
-
     }
 }
