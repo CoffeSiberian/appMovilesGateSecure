@@ -13,7 +13,7 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView
     private lateinit var clickListen: onItemClickListener
 
     interface onItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, id: String)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener){
@@ -32,7 +32,6 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView
             holder.name.text = usuario?.name
             holder.rfid.text = usuario?.rfid
             holder.azlevel.text = usuario?.azlevel.toString()
-
         }
 
         override fun getItemCount(): Int {
@@ -46,8 +45,9 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView
             val azlevel: TextView = itemView.findViewById(R.id.cazlevel)
 
             init {
+                val id: TextView = itemView.findViewById(R.id.cid)
                 itemView.findViewById<View>(R.id.cdelete).setOnClickListener(){
-                    listener.onItemClick(adapterPosition)
+                    listener.onItemClick(adapterPosition, id.text.toString())
                 }
             }
         }

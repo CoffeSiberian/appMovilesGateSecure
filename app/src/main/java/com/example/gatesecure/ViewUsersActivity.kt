@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gatesecure.Adapter.AdapterUsuarios
 import com.example.gatesecure.Model.Usuario
 import com.example.gatesecure.databinding.ActivityCrudBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -47,25 +50,51 @@ class ViewUsersActivity : AppCompatActivity() {
     }
 
     private fun getUsers(rview: RecyclerView) {
-
         database = Firebase.database.reference
-        var getData = database.child("Usuarios").get()
+        val getData = database.child("Usuarios")
+        dataChange(getData, rview)
+        loadData(getData, rview)
+    }
 
-        getData.addOnSuccessListener {
-            var arr = it.children
+    private fun delUser(database: DatabaseReference){
+        database.removeValue().addOnSuccessListener {
+            Toast.makeText(this, "Usuario borrado", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun dataChange(database: DatabaseReference, rview: RecyclerView){
+        val usersListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                loadData(database, rview)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("Cancelled", databaseError.toException())
+            }
+        }
+        database.addValueEventListener(usersListener)
+    }
+
+    private fun loadData(database: DatabaseReference, rview: RecyclerView){
+        database.get().addOnSuccessListener {
+            val arr = it.children
+            listUsuarios.clear()
             for (r in arr){
                 listUsuarios.add(r.getValue<Usuario>())
             }
-
-            var adapterUsuarios = AdapterUsuarios(listUsuarios)
-            rview.adapter = adapterUsuarios
-            adapterUsuarios.setOnItemClickListener(object : AdapterUsuarios.onItemClickListener{
-                override fun onItemClick(position: Int) {
-                    Log.e("firebase", "$position")
-                }
-            })
+            viewLoad(rview)
         }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
+            Toast.makeText(this, "Error al recuperar los datos: $it", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun viewLoad(rview: RecyclerView){
+        val adapterUsuarios = AdapterUsuarios(listUsuarios)
+        rview.adapter = adapterUsuarios
+        adapterUsuarios.setOnItemClickListener(object : AdapterUsuarios.onItemClickListener{
+            override fun onItemClick(position: Int, id: String) {
+                val refDel = database.child("Usuarios").child(id)
+                delUser(refDel)
+            }
+        })
     }
 }
