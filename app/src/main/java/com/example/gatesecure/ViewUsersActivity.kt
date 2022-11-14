@@ -1,5 +1,6 @@
 package com.example.gatesecure
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,6 +41,10 @@ class ViewUsersActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
         getUsers(usuariosRecyclerView)
+
+        binding.bottomBar.setOnClickListener{
+            startActivity(Intent(this, AddUserActivity::class.java))
+        }
     }
 
     private fun getUsers(rview: RecyclerView) {

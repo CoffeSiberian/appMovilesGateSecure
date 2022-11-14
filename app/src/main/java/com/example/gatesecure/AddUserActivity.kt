@@ -1,12 +1,12 @@
 package com.example.gatesecure
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.example.gatesecure.Model.Usuario
 import com.example.gatesecure.databinding.ActivityAddUserBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -14,7 +14,6 @@ class AddUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddUserBinding
     private lateinit var actionBar: ActionBar
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +51,7 @@ class AddUserActivity : AppCompatActivity() {
                         binding.crfid.setText("")
                         binding.cazlevel.setText("")
                         Toast.makeText(this, "Usuario agregado", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, ViewUsersActivity::class.java))
                     }.addOnFailureListener{
                         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                     }

@@ -32,10 +32,6 @@ class ProfileUser : AppCompatActivity() {
         binding.btnVIEW.setOnClickListener {
             startActivity(Intent(this, ViewUsersActivity::class.java))
         }
-
-        binding.btnCRUD.setOnClickListener {
-            startActivity(Intent(this, AddUserActivity::class.java))
-        }
     }
 
     private fun checkUser() {

@@ -57,13 +57,4 @@
         android:layout_marginTop="16dp"
         android:text="Agregar"
         android:textAppearance="?attr/textAppearanceButton" />
-
-    <Button
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:textAppearance="?attr/textAppearanceButton"
-        android:id="@+id/btnView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Ver Usuarios" />
 </LinearLayout>
