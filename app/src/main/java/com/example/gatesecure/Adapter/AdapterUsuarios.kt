@@ -1,5 +1,6 @@
 package com.example.gatesecure.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.example.gatesecure.R
 class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView.Adapter<AdapterUsuarios.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.users_card, parent, false)
+            Log.i("debugss", "xddd")
             return ViewHolder(view)
         }
 

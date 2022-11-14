@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.ActionBar
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gatesecure.Adapter.AdapterUsuarios
 import com.example.gatesecure.Model.Usuario
@@ -12,7 +13,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import kotlin.reflect.typeOf
 
 class ViewUsersActivity : AppCompatActivity() {
 
@@ -29,15 +29,17 @@ class ViewUsersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCrudBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        usuariosRecyclerView = RecyclerView(this)
+
+        usuariosRecyclerView = binding.rvUsuarios
+
+        usuariosRecyclerView.layoutManager = LinearLayoutManager(this)
         usuariosRecyclerView.setHasFixedSize(true)
 
-        getUsers(usuariosRecyclerView)
-
         actionBar = supportActionBar!!
-        actionBar.title = "Agregar Usuario"
+        actionBar.title = "Usuarios"
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
+        getUsers(usuariosRecyclerView)
     }
 
     private fun getUsers(rview: RecyclerView) {
