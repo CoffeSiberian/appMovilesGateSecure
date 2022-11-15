@@ -13,7 +13,14 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView
     private lateinit var clickListen: onItemClickListener
 
     interface onItemClickListener{
-        fun onItemClick(position: Int, id: String, nameClick: String, name: String)
+        fun onItemClick(
+            position: Int,
+            id: String,
+            nameClick: String,
+            name: String,
+            azlevel: String,
+            rfid: String,
+        )
     }
 
     fun setOnItemClickListener(listener: onItemClickListener){
@@ -47,12 +54,28 @@ class AdapterUsuarios (private val usuarios: ArrayList<Usuario?>) : RecyclerView
             init {
                 val id: TextView = itemView.findViewById(R.id.cid)
                 val name: TextView = itemView.findViewById(R.id.cname)
+                val azlevel: TextView = itemView.findViewById(R.id.cazlevel)
+                val rfid: TextView = itemView.findViewById(R.id.crfid)
 
                 itemView.findViewById<View>(R.id.cdelete).setOnClickListener(){
-                    listener.onItemClick(adapterPosition, id.text.toString(), "cdelete", name.text.toString())
+                    listener.onItemClick(
+                        adapterPosition,
+                        id.text.toString(),
+                        "cdelete",
+                        name.text.toString(),
+                        azlevel.text.toString(),
+                        rfid.text.toString(),
+                    )
                 }
                 itemView.findViewById<View>(R.id.cedit).setOnClickListener(){
-                    listener.onItemClick(adapterPosition, id.text.toString(), "cedit", name.text.toString())
+                    listener.onItemClick(
+                        adapterPosition,
+                        id.text.toString(),
+                        "cedit",
+                        name.text.toString(),
+                        azlevel.text.toString(),
+                        rfid.text.toString(),
+                    )
                 }
             }
         }

@@ -94,11 +94,10 @@ class ViewUsersActivity : AppCompatActivity() {
         val context = this
         rview.adapter = adapterUsuarios
         adapterUsuarios.setOnItemClickListener(object : AdapterUsuarios.onItemClickListener{
-            override fun onItemClick(position: Int, id: String, nameClick: String, name: String) {
+            override fun onItemClick(position: Int, id: String, nameClick: String, name: String, azlevel: String, rfid: String) {
                 if (nameClick == "cedit"){
                     val refEdit = database.child("Usuarios")
-                    Log.w("dev", nameClick)
-                    editDialog(context, refEdit, name, id)
+                    editDialog(context, refEdit, name, id, azlevel, rfid)
                 }
                 if (nameClick == "cdelete"){
                     val refDel = database.child("Usuarios").child(id)
@@ -108,8 +107,11 @@ class ViewUsersActivity : AppCompatActivity() {
         })
     }
 
-    private fun editDialog(context: Context, database: DatabaseReference, name: String, id: String){
+    private fun editDialog(context: Context, database: DatabaseReference, name: String, id: String, azlevel: String, rfid: String){
         val view: View = View.inflate(this, R.layout.activity_edit_usuario, null)
+        view.findViewById<EditText>(R.id.edname).setText(name)
+        view.findViewById<EditText>(R.id.edlevel).setText(azlevel)
+        view.findViewById<EditText>(R.id.edrfid).setText(rfid)
         MaterialAlertDialogBuilder(context)
             .setTitle("Estas editando al usuario $name")
             .setPositiveButton(resources.getString(R.string.modalEditAccept)) { dialog, which ->
